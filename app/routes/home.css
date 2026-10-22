@@ -947,3 +947,17 @@ a {
         transform: none;
     }
 }
+
+/* Outside the transformed main element so this stays fixed to the screen. */
+.gc-floating-toggle {
+    position: fixed;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 60;
+    max-width: calc(100vw - 2rem);
+    border: 1px solid var(--accent);
+    box-shadow: 0 4px 24px #0005;
+}
+.gc-page:has(.gc-floating-toggle) {
+    padding-bottom: 6rem;
+}

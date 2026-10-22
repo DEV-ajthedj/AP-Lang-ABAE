@@ -47,6 +47,12 @@ const promises: Promise[] = [
 export default function Home() {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [realityVisible, setRealityVisible] = useState(false);
+	const [hasRevealed, setHasRevealed] = useState(false);
+
+	function toggleReality() {
+		setHasRevealed(true);
+		setRealityVisible((visible) => !visible);
+	}
 
 	function closeMenu() {
 		setMenuOpen(false);
@@ -152,7 +158,7 @@ export default function Home() {
 
 
 
-					<button className="gc-button gc-button--dark" type="button" aria-expanded={realityVisible} aria-controls="promise-cards reality-panel" onClick={() => setRealityVisible((visible) => !visible)}>
+					<button className="gc-button gc-button--dark" type="button" aria-expanded={realityVisible} aria-controls="promise-cards reality-panel" onClick={toggleReality}>
 						{realityVisible ? "Return to the dream" : "Look through the glass"}
 						<span aria-hidden="true">{realityVisible ? "↶" : "↗"}</span>
 					</button>
@@ -170,6 +176,13 @@ export default function Home() {
 				</section>
 
 			</main>
+
+			{hasRevealed && (
+				<button className="gc-button gc-button--dark gc-floating-toggle" type="button" aria-expanded={realityVisible} aria-controls="promise-cards reality-panel" onClick={toggleReality}>
+					{realityVisible ? "Return to the dream" : "Look through the glass"}
+					<span aria-hidden="true">{realityVisible ? "↶" : "↗"}</span>
+				</button>
+			)}
 
 			<footer className="gc-footer">
 				<div>
